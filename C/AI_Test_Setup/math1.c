@@ -9,6 +9,11 @@ robust, and user-friendly.
 #include <math.h>
 #include "math1.h"
 
+// By wrapping main in this #ifndef block, we can exclude it from the test build
+// by defining EXCLUDE_MAIN_FOR_TESTS in our CMakeLists.txt for the test target.
+// This prevents a "multiple definition of main" linker error.
+#ifndef EXCLUDE_MAIN_FOR_TESTS
+
 int call_main() {
     int choice;
     do {
@@ -43,6 +48,7 @@ int call_main() {
 
     return 0;
 }
+#endif // EXCLUDE_MAIN_FOR_TESTS
 
 void show_menu() {
     printf("--- C Math Program Menu ---\n");
@@ -68,14 +74,6 @@ void generate_multiplication_table() {
   for (int i = 1; i <= 10; ++i) {
     printf("%d * %d = %d \n", n, i, n * i);
   }
-}
-
-/**
- * @brief Testable function to multiply two integers.
- * This function contains only the core logic.
- */
-int multiply(int a, int b) {
-    return a * b;
 }
 
 /**
@@ -111,20 +109,6 @@ int add_main() {
     return 0;
 }
 
-/**
- * @brief Testable function to divide two integers and get quotient and remainder.
- * This function contains only the core logic.
- * @return 0 on success, -1 on division by zero.
- */
-int integer_divide(int dividend, int divisor, int* quotient, int* remainder) {
-    if (divisor == 0) {
-        return -1; // Error: division by zero
-    }
-    *quotient = dividend / divisor;
-    *remainder = dividend % divisor;
-    return 0; // Success
-}
-
 void divide_two_numbers_quotient_remainder() {
     int dividend, divisor, quotient, remainder;
 
@@ -134,9 +118,12 @@ void divide_two_numbers_quotient_remainder() {
     printf("Enter divisor: ");
     scanf("%d", &divisor);
 
-    if (integer_divide(dividend, divisor, &quotient, &remainder) != 0) {
+    if (divisor == 0) {
         printf("Error: Cannot divide by zero.\n");
     } else {
+        quotient = dividend / divisor;
+        remainder = dividend % divisor;
+
         printf("Quotient = %d\n", quotient);
         printf("Remainder = %d\n", remainder);
     }
@@ -168,20 +155,8 @@ void multiply_two_numbers() {
     printf("Enter the second number: ");
     scanf("%d", &num2);
 
-    product = multiply(num1, num2);
+    product = num1 * num2;
     printf("Result: %d * %d = %d\n", num1, num2, product);
-}
-
-/**
- * @brief Testable function to divide two floats.
- * This function contains only the core logic.
- * @return The result of the division, or NAN if dividing by zero.
- */
-float float_divide(float numerator, float denominator) {
-    if (denominator == 0.0f) {
-        return NAN; // Not-a-Number from math.h
-    }
-    return numerator / denominator;
 }
 
 void divide_two_floats() {
@@ -193,10 +168,10 @@ void divide_two_floats() {
     printf("Enter the denominator (can be a decimal): ");
     scanf("%f", &num2);
 
-    float result = float_divide(num1, num2);
-    if (isnan(result)) {
+    if (num2 == 0) {
         printf("Cannot divide by zero.\n");
     } else {
+        float result = num1 / num2;
         printf("Result: %.2f / %.2f = %.2f\n", num1, num2, result);
     }
 }
@@ -214,21 +189,10 @@ void calculate_power() {
     printf("Result: %.2lf ^ %.2lf = %.2lf\n", base, exp, result);
 }
 
-/**
- * @brief Testable function to get a name.
- * This function contains only the core logic.
- */
-const char* get_name(void) {
-    // Statically allocated so it remains valid after function returns
-    static char myname[] = "myname";
-    return myname;
-}
-
 void print_name() {
     // Allocate enough space. "saisamridh" is 10 chars + 1 for null terminator.
-    char myname[11] = "myname";
+    char myname[11] = "saisamridh";
     printf("My name is: %s\n", myname);
-    printf("My name is: %s\n", get_name());
 }
 
 void perform_basic_math() {
@@ -302,16 +266,10 @@ int rect_areamain() {
     return 0;
 }
 
-// By wrapping main in this #ifndef block, we can exclude it from the test build
-// by defining EXCLUDE_MAIN_FOR_TESTS in our CMakeLists.txt for the test target.
-// This prevents a "multiple definition of main" linker error.
-#ifndef EXCLUDE_MAIN_FOR_TESTS
-
-int main(){
+int UT_main(){
 
     call_main();
     sq_areamain();
     rect_areamain();
     return 0;
 }
-#endif // EXCLUDE_MAIN_FOR_TESTS

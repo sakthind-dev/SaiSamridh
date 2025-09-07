@@ -1,0 +1,48 @@
+        -:    0:Source:test_math1.c
+        -:    0:Graph:test_math1.gcno
+        -:    0:Data:test_math1.gcda
+        -:    0:Runs:1
+        -:    1:#include "unity.h"
+        -:    2:#include "math1.h" // Or use a header file
+        -:    3:
+        2:    4:void setUp(void) {}
+        2:    5:void tearDown(void) {}
+        -:    6:
+        1:    7:void test_add_two_numbers(void) {
+        -:    8://    TEST_ASSERT_EQUAL(5, add_two_numbers(2, 3));
+        -:    9://    TEST_ASSERT_EQUAL(0, add_two_numbers(-2, 2));
+        1:   10:    TEST_ASSERT_EQUAL(5, add(2, 3));
+        1:   11:    TEST_ASSERT_EQUAL(0, add(-2, 2));
+        1:   12:    TEST_ASSERT_EQUAL(-5, add(-2, -3));
+        1:   13:    TEST_ASSERT_EQUAL(0, add(0, 0));
+        1:   14:    TEST_ASSERT_EQUAL(10, add(5, 5));
+        1:   15:    TEST_ASSERT_EQUAL(-10, add(-5, -5));
+       1*:   16:    TEST_ASSERT_NOT_EQUAL(6, add(2, 3));
+       1*:   17:    TEST_ASSERT_NOT_EQUAL(1, add(-2, 2));
+        1:   18:    TEST_ASSERT_NOT_EQUAL(0, add(0, 0));
+    #####:   19:    TEST_ASSERT_NOT_EQUAL(8, add(5, 3));
+    #####:   20:    TEST_ASSERT_NOT_EQUAL(-8, add(-5, -3)); 
+    #####:   21:}
+        -:   22:
+        1:   23:void test_calculate_average(void) {
+        1:   24:    TEST_ASSERT_EQUAL(2.0f, average(1, 2, 3));
+        1:   25:    TEST_ASSERT_EQUAL(3.0f, average(3, 3, 3));
+        1:   26:    TEST_ASSERT_EQUAL(0.0f, average(0, 0, 0));
+        1:   27:    TEST_ASSERT_EQUAL(-1.0f, average(-1, 0, 1));
+    #####:   28:    TEST_ASSERT_NOT_EQUAL(2.0f, average(1, 2, 4));
+    #####:   29:    TEST_ASSERT_NOT_EQUAL(3.0f, average(3, 3, 6));
+    #####:   30:    TEST_ASSERT_NOT_EQUAL(0.0f, average(0, 0, 2));
+    #####:   31:    TEST_ASSERT_NOT_EQUAL(-1.0f, average(-1, 0, 1));
+    #####:   32:    TEST_ASSERT_FLOAT_WITHIN(0.001f, 2.0f, average(1, 2, 3));
+    #####:   33:    TEST_ASSERT_FLOAT_WITHIN(0.001f, 3.0f, average(3, 3, 3));
+    #####:   34:    TEST_ASSERT_FLOAT_WITHIN(0.001f, 0.0f, average(0, 0, 0));
+    #####:   35:    TEST_ASSERT_FLOAT_WITHIN(0.001f, 0.0f, average(-1, 0, 1));
+    #####:   36:    TEST_ASSERT_FLOAT_WITHIN(0.001f, 3.333f, average(2, 3, 5));
+    #####:   37:}
+        -:   38:
+        1:   39:int main(void) {
+        1:   40:    UNITY_BEGIN();
+        1:   41:    RUN_TEST(test_add_two_numbers);
+        1:   42:    RUN_TEST(test_calculate_average);
+        1:   43:    return UNITY_END();
+        -:   44:}

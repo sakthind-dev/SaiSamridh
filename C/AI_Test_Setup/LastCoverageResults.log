@@ -1,0 +1,29 @@
+[2025-09-07 20:57:51] [info] Start Program:
+Path:"test_math1.exe"
+Arguments:
+Working directory: not set.
+Modules: Selected: * Excluded: 
+Sources: Selected: C:\Users\saijo\OneDrive\Desktop\Learnings\SaiSamridh\C Excluded: 
+Log Level: Normal
+Cover Children: 0
+Aggregate by file: 1
+Continue after C++ exception: 0
+Optimized build support: 0
+Export: html 
+Input coverage: 
+Unified diff: 
+Excluded line regular expressions: 
+Substitute pdb source paths: 
+[2025-09-07 20:57:51] [info] Module: C:\Users\saijo\OneDrive\Desktop\Learnings\SaiSamridh\C\test_math1.exe is selected because it matches selected pattern: *
+[2025-09-07 20:57:51] [info] Module: C:\Windows\System32\ntdll.dll is selected because it matches selected pattern: *
+[2025-09-07 20:57:51] [info] Module: C:\Windows\System32\kernel32.dll is selected because it matches selected pattern: *
+[2025-09-07 20:57:51] [info] Module: C:\Windows\System32\KernelBase.dll is selected because it matches selected pattern: *
+[2025-09-07 20:57:51] [info] Module: C:\Windows\System32\msvcrt.dll is selected because it matches selected pattern: *
+[2025-09-07 20:57:51] [info] ----------------------------------------------------
+[2025-09-07 20:57:51] [info] Coverage generated in Folder C:\Users\saijo\OneDrive\Desktop\Learnings\SaiSamridh\C\CoverageReport-2025-09-07-20h57m51s
+[2025-09-07 20:57:51] [info] ----------------------------------------------------
+[2025-09-07 20:57:51] [info] The code coverage report is not what you expect? See the FAQ https://github.com/OpenCppCoverage/OpenCppCoverage/wiki/FAQ.
+[2025-09-07 20:57:51] [error] Your program stop with error code: 2
+[2025-09-07 20:57:51] [warning] No modules were selected. Please check the values of --modules and --excluded_modules.
+You can try to remove all --modules and --excluded_modules and use --modules=C:\Users\saijo\OneDrive\Desktop\Learnings\SaiSamridh\C instead.
+For additional help, see https://github.com/OpenCppCoverage/OpenCppCoverage/wiki/FAQ#coverage-report-is-empty.
