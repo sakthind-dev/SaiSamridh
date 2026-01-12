@@ -1,4 +1,5 @@
 # 1. String Manipulation
+txt = "The price of the book is expensive."
 print("We are the so-called \"Vikings\" from the north.")
 print(txt.find("price"))
 print(txt.find("e", 5, 10))
@@ -23,12 +24,13 @@ def if_check():
     else:
         print('More')
 
+# 4. For Loop
 def for_loop():
     vehicle = ['car', 'auto', 'plane', 'bike']
     for v in vehicle:
         print(v, len(v))
 
-# 4. JSON Handling
+# 5. JSON Handling
 import json
 x = '{ "name":"John", "age":30, "city":"New York"}'
 y = json.loads(x)
@@ -51,8 +53,6 @@ for i in range(1, 11):
     print(f"{num} x {i} = {result}"
     )
 
-
-
 #python equivalent for division table
 # This code generates a division table for the number 8
 num = 8
@@ -61,16 +61,12 @@ for i in range(1, 11):
     result = num / i
     print(f"{num} ÷ {i} = {result:.2f}")
 
-
-
 #Python equivalent for creative names of number 8
   # Five creative names of number 8
 names = ["Infinity", "Octopus", "sai", "Eightball", "Eighth Wonder"]
 
 for name in names:
     print(name)
-
-
 
 #Python equivalent for multiplication of two numbers
 num1 = float(input("Enter the first number: "))
@@ -79,8 +75,6 @@ num2 = float(input("Enter the second number: "))
 result = num1 * num2
 
 print(f"{num1} × {num2} = {result}")
-
-
 
 #Python equivalent for division of two numbers
 num1 = float(input("Enter the numerator: "))
@@ -93,11 +87,9 @@ if num2 != 0:
 else:
     print("Error: Division by zero is not allowed.")
 
-
-*
 # Python equivalent for checking if a number is prime
-int main()
- import math
+#int main()
+import math
 
 def is_prime(number):
     if number <= 1:
@@ -113,10 +105,6 @@ if is_prime(number):
     print(f"{number} is a prime number.")
 else:
     print(f"{number} is not a prime number.")
-    
-    return 0;
- 
-
 
 # Python equivalent for checking if a number is greater than another
 a = 7
@@ -129,13 +117,10 @@ elif a < b:
 else:
     print(a, "and", b, "are equal")
 
-
-
-
 # Python equivalent for printing a name
-Sure! Let’s explore a few easy and fun Python programs for kids—especially useful for a 12-year-old starting out with numbers, characters, and logic. Each program is short, beginner-friendly, and teaches a cool concept:
+#Sure! Let’s explore a few easy and fun Python programs for kids—especially useful for a 12-year-old starting out with numbers, characters, and logic. Each program is short, beginner-friendly, and teaches a cool concept:
 
-🧮 1. Multiplication Table of Any Number
+#🧮 1. Multiplication Table of Any Number
 number = int(input("Enter a number: "))
 print(f"Multiplication table of {number}")
 for i in range(1, 11):
@@ -146,49 +131,57 @@ for i in range(1, 11):
     sum += i
 print("Sum of numbers from 1 to 10 is:", sum)
 
-
-
-
 #Python equivalent for division of two numbers
 num1 = float(input("Enter the first number: "))
 num2 = float(input("Enter the second number: "))
 
-
 if num2 == 0:
     print("Cannot divide by zero.")
 else:
-    
     result = num1 / num2
-    
     print("The result of the division is:", result)
- 
-
 
 #Python equivalent for division of two numbers
-int main(num1,num2,num3)
-{
+def divide_nums(num1, num2):
+    if num2 == 0:
+        print("Cannot divide by zero.")
+        return None
+    else:
+        return num1 / num2
+
+# Get user input
 num1 = float(input("Enter the first number: "))
 num2 = float(input("Enter the second number: "))
 
+result = divide_nums(num1, num2)
+if result is not None:
+    print("The result of the division is:", result)
 
-product = num1 * num2
-print("The product is:", product)
+#Python equivalent for division of two numbers
+def div_main(num1, num2, num3):
+    num1 = float(input("Enter the first number: "))
+    num2 = float(input("Enter the second number: "))
+    num3 = float(input("Enter the third number: "))
 
+    product = num1 * num2 * num3
+    print("The product is:", product)
 
-if num2 == 0:
-    print("Cannot divide by zero.")
-else:
-    quotient = num1 / num2
-    print("The quotient is:", quotient)
+    if num2 == 0:
+        print("Cannot divide by zero.")
+    else:
+        quotient = num1 / num2
+        print("The quotient is:", quotient)
+    return 0
 
-return 0;
-}
-
-i = 1
-while i <= 10:
+#Python equivalent for printing numbers from 1 to 10
+numbers = {1,2,3,4,5,6,7,8,9,10}
+for i in numbers:
     print(i)
-    i += 1 
 
+for i in range:
+    print(i)
+
+#Python equivalent for subtraction of two numbers using operator module
 import operator
 
 num1 = 15
@@ -196,18 +189,22 @@ num2 = 8
 difference = operator.sub(num1, num2)
 print("The difference is:", difference)
 
-
-
+#Python equivalent for subtraction of two numbers using function
+def subtract_numbers(num1, num2):
+    return num1 - num2
 #Python equivalent for subtraction of two numbers
 num1 = float(input("Enter the first number: "))
 num2 = float(input("Enter the second number: "))
 
-sum = num1 - num2
-print(" The sum is:", sum)
+difference = subtract_numbers(num1, num2)
+print("The difference is:", difference)
 
+#Python equivalent for sum of two numbers
+def sum_numbers(num1, num2):
+    return num1 + num2
+#Python equivalent for sum of two numbers
 num1 = float(input("Enter the first number: "))
 num2 = float(input("Enter the second number: "))
 
-sum = num1 + num2
+sum = sum_numbers(num1, num2)
 print(" The sum is:", sum)
-
