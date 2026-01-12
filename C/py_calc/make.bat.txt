@@ -1,0 +1,6 @@
+gcc -fprofile-arcs -ftest-coverage test_math1.c math1.c unity.c -o test_math1.exe
+.\test_math1.exe
+dir *.gcno *.gcda
+gcov math1.c
+gcov test_math1.c
+gcov -o . math1.c

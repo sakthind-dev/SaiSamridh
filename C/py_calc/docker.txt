@@ -1,0 +1,227 @@
+1. "uname -m" - command to confirm the architecture of your system. 
+2. uname -r - command will give you the version of your kernel. 
+3. lsb_release -a - command to provide ubuntu details
+
+
+
+Docker installation
+===================
+sudo apt-get update
+sudo apt-get install ca-certificates curl
+$ sudo install -m 0755 -d /etc/apt/keyrings
+$ sudo curl -fsSL https://download.docker.com/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+$ sudo chmod a+r /etc/apt/keyrings/docker.asc
+cat /etc/apt/sources.list.d/docker.list
+
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] 
+      https://download.docker.com/linux/ubuntu \
+  $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+
+sudo apt-get update
+
+--> Faced issue here for docker installation
+
+Docker issue fix
+==============
+sudo rm /etc/apt/sources.list.d/docker.list
+sudo apt update
+sudo apt install ca-certificates curl gnupg lsb-release
+sudo mkdir -p /etc/apt/keyrings
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu \
+  $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
+sudo apt update
+sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+===
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin
+
+ sudo docker run hello-world
+# List the available versions:
+apt-cache madison docker-ce | awk '{ print $3 }'
+
+uninstall
+$ sudo apt-get purge docker-ce docker-ce-cli containerd.io 
+   docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+$ sudo rm -rf /var/lib/docker
+$ sudo rm -rf /var/lib/containerd
+
+
+images
+==========
+sudo docker images
+sudo docker image ls -q
+
+pull specific docker images
+sudo docker pull ubuntu:20.04
+
+Building Docker Images from Dockerfile
+=========================================
+The docker build command creates a Docker image from a Dockerfile placed at the provided path. During the build process, Docker follows the instructions in the Dockerfile to generate layers and assemble the final image. This command is essential for creating customized images that are tailored to your application's specific needs.
+
+Dockerfile
+# Use a base image from Docker Hub
+FROM alpine:3.14
+
+# Set the working directory inside the container
+WORKDIR /app
+
+# Copy the application files from the host machine to the container
+COPY . .
+
+# Expose a port for the application (optional)
+EXPOSE 8080
+
+# Define the command to run when the container starts
+CMD ["./myapp"]
+
+
+Got it! Here's a simple example of a Dockerfile that uses GCC to compile a single C file named main.c.
+🧰 Sample Dockerfile
+=======================
+# Use the official GCC image as base
+FROM gcc:latest
+
+# Set working directory in the container
+WORKDIR /usr/src/app
+
+# Copy your C file into the container
+COPY main.c .
+
+# Compile the file
+RUN gcc -o main main.c
+
+# Set the default command to run the compiled binary
+CMD ["./main"]
+
+
+🛠 RUN: To use it:
+=============
+- Place your main.c and Dockerfile in the same directory.
+- Run this in that directory:
+docker build -t my-c-app .
+docker run my-c-app
+
+
+Let me know what your .c file does—I'd love to tailor the setup if it's doing something more interesting!
+
+Tagging Docker Images
+====================
+The docker tag command creates a new tag for an existing Docker image. Tags allow you to label and reference multiple versions of an image. This command is frequently used before uploading an image to a registry under a different tag.
+
+	sudo docker build -t myapp:latest .
+sudo  docker tag myapp:latest myrepo/myapp:v1.0
+
+Pushing Docker Images
+========================
+The docker push command transfers a Docker image from your local machine to a registry, such as Docker Hub or a private one. Before pushing an image, ensure that you have signed in to the registry with the "docker login" command.
+
+docker push myrepo/myapp:v1.0
+
+Remove Docker images: docker rmi myapp:latest
+
+Pruning Docker Images
+=========================
+The docker image prune command removes unused Docker images from your local machine. This command is useful for freeing up disk space by removing images that are no longer associated with any containers or tags.
+
+-a, --all − Delete all unused images, not just the dangling ones.
+-f, --force − Don't ask for confirmation before cleaning.
+
+$ docker image prune -a
+
+Viewing Docker Image History:  docker image history myimage:latest
+
+Inspecting Docker Images
+The docker image inspect command returns extensive information about a Docker image in JSON format. 
+$docker image inspect myimage:latest
+
+How to Delete all Docker Images at Once?: $ docker rmi $(docker image ls -q)
+
+Conclusion
+===============
+In conclusion, Docker images allow developers and system administrators to package and deploy applications in a uniform and portable manner. Images are a powerful technique for building, sharing, and running programs across different environments because they use a layered file system and a declarative approach via Dockerfiles.
+
+This functionality is extended further by the extensive ecosystem of Docker commands, which allows users to manage the full image lifecycle, from creation and inspection to pulling, running, and manipulating containers. By grasping these ideas, you will be able to leverage Docker's potential to expedite your development workflows and assure dependable application deployment.
+
+Q3. How to Build a Docker Image?
+You can build Docker images using Dockerfiles. Dockerfiles are text files that contain a set of instructions for constructing the image. These instructions include specifying the base image, copying files into it, performing commands to install dependencies or configure the environment, and setting the application's runtime behavior. After creating the Dockerfile, you run the docker build command to build the image according to the instructions.
+
+Listing all Docker Containers
+====================================
+The Docker host's running containers can be listed using the docker ps command. You can use the -a or --all flag to show all containers, including stopped ones, as it only shows running containers by default.
+$ docker ps
+
+Running a Docker Container
+=====================
+The primary command for starting and creating Docker containers is docker run. If the image isn't already available locally, Docker pulls it from a registry when you run this command. It then starts a fresh container instance by generating one based on that image.
+
+With the help of this command, you can specify several options, including volume mounts, environment variables, port mappings, and more, to tailor the container's configuration to your requirements.
+
+$ docker run -d -p 8080:80 nginx
+In this case, the detached mode (-d) of the docker run creates a new container based on the "nginx" image and runs it in the background. Additionally, it maps host port 8080 to container port 80 (-p 8080:80), granting access to the NGINX web server housed within the container.
+
+Stopping a Docker Container: $ docker stop  my_container
+
+Pausing a Running Container: $ docker pause  my_container
+
+Resuming a Docker Container: $ docker unpause my_container
+
+Restarting a Container: $ docker restart my_container 
+
+Executing Commands in a Running Docker Container"
+======================================
+To run a command inside an already-running container, use the docker exec command. It enables users to run arbitrary commands, like starting a shell session or carrying out a particular program, inside the environment of a container.
+$ docker exec -it my_container bash 
+
+Removing a Docker Container: $ docker rm my_container 
+
+$ docker container prune
+
+$ docker rm $(docker ps -aq) 
+
+Run Jenkins in a Docker Container
+Next, You can run the following command to start Jenkins in a Docker container −
+================================
+$ docker run -d --name jenkins -p 8080:8080 -p 50000:50000 -v jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+
+
+Unlock Jenkins To ensure Jenkins is securely set up by the administrator, a password has been written to the log (not sure where to find it?) and this file on the server:
+/var/jenkins_home/secrets/initialAdminPassword
+=============
+To unlock Jenkins after installation, you’ll need the initial admin password stored in this file:
+/var/jenkins_home/secrets/initialAdminPassword
+
+
+🔓 How to retrieve it
+If you're running Jenkins in a Docker container, you can extract the password like this:
+docker exec <container_name> cat /var/jenkins_home/secrets/initialAdminPassword
+
+
+Replace <container_name> with the name or ID of your Jenkins container. You can find it using:
+docker ps
+
+
+If Jenkins is installed directly on your system (not in Docker), just open the file:
+cat /var/jenkins_home/secrets/initialAdminPassword
+
+
+Once you have the password, paste it into the Jenkins web interface to complete the setup.
+Let me know if you're using Docker, Windows, or something else—I can tailor the steps for your setup.
+
+sudo docker images ls
+
+sudo docker exec 0a336148211a cat /var/jenkins_home/secrets/initia
+lAdminPassword
+Error response from daemon: No such container: 0a336148211a
+saijo@saijoshin:/mnt/c/Users/saijo$ sudo docker exec 6b1577ba025b cat /var/jenkins_home/secrets/initialAdminPassword
+Error response from daemon: container 6b1577ba025b3c391348a5bb6e809da48941135a55a3e5571c2afd69c285045a is not running
+saijo@saijoshin:/mnt/c/Users/saijo$ sudo docker ps
+CONTAINER ID   IMAGE                 COMMAND                  CREATED          STATUS          PORTS                                                                                          NAMES
+0502880e1d7f   jenkins/jenkins:lts   "/usr/bin/tini -- /u…"   47 minutes ago   Up 47 minutes   0.0.0.0:8080->8080/tcp, [::]:8080->8080/tcp, 0.0.0.0:50000->50000/tcp, [::]:50000->50000/tcp   jenkins
+
+sudo docker exec 0502880e1d7f cat /var/jenkins_home/secrets/initia
+lAdminPassword
+0f7d632fdxxx

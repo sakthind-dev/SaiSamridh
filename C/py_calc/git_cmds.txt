@@ -1,0 +1,24 @@
+I currently can't directly commit files to your GitHub repository. However, I can guide you on how to commit the file to your repo using Git commands:
+
+Steps to Commit the File to GitHub:
+Navigate to the Repository: Open your terminal or command line and navigate to the directory where your repository is located:
+cd /path/to/your/repo
+Check the Current Status: Check the status of your repository to see the changes:
+git status
+Add the File to the Staging Area: Add the file you want to commit:
+git add <filename>
+Replace <filename> with the name of the file you want to commit. If you want to add all the changes, use:
+git add .
+Commit the File: Commit the file with a meaningful message:
+git commit -m "Add Python GUI calculator script with advanced operations"
+Push the Changes: Push the commit to your GitHub repository:
+git push origin <branch-name>
+
+Replace <branch-name> with the branch you are working on (e.g., main or master).
+
+cd /path/to/your/repo
+git status
+git add <filename>
+git add .
+git commit -m "Add Python GUI calculator script with advanced operations"
+git push origin <branch-name>

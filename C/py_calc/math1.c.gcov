@@ -1,0 +1,280 @@
+        -:    0:Source:math1.c
+        -:    0:Graph:./math1.gcno
+        -:    0:Data:./math1.gcda
+        -:    0:Runs:1
+        -:    0:Source is newer than graph
+        -:    1:/******************************************************************************
+        -:    2:
+        -:    3:                            Online C Compiler.
+        -:    4:This is a refactored version of the original code to be more structured,
+        -:    5:robust, and user-friendly.
+        -:    6:
+        -:    7:*******************************************************************************/
+        -:    8:#include <stdio.h>
+        -:    9:#include <math.h>
+        -:   10:#include "math1.h"
+        -:   11:
+        -:   12:// By wrapping main in this #ifndef block, we can exclude it from the test build
+        -:   13:// by defining EXCLUDE_MAIN_FOR_TESTS in our CMakeLists.txt for the test target.
+        -:   14:// This prevents a "multiple definition of main" linker error.
+        -:   15:#ifndef EXCLUDE_MAIN_FOR_TESTS
+        -:   16:
+        -:   17:int call_main() {
+        -:   18:    int choice;
+        -:   19:    do {
+        -:   20:        show_menu();
+        -:   21:        printf("Enter your choice (0-9): ");
+        -:   22:        
+        -:   23:        // Basic input validation
+        -:   24:        if (scanf("%d", &choice) != 1) {
+        -:   25:            printf("Invalid input. Please enter a number.\n\n");
+        -:   26:            // Clear the input buffer to prevent an infinite loop
+        -:   27:            while (getchar() != '\n');
+        -:   28:            choice = -1; // Set to an invalid choice to continue loop
+    #####:   29:            continue;
+        -:   30:        }
+        -:   31:
+    #####:   32:        switch (choice) {
+    #####:   33:            case 1: perform_basic_math(); break;
+        -:   34:            case 2: add_two_numbers(); break;
+        -:   35:            case 3: multiply_two_numbers(); break;
+    #####:   36:            case 4: generate_multiplication_table(); break;
+    #####:   37:            case 5: generate_division_table(); break;
+        -:   38:            case 6: divide_two_numbers_quotient_remainder(); break;
+    #####:   39:            case 7: divide_two_floats(); break;
+    #####:   40:            case 8: calculate_average(); break;
+    #####:   41:            case 9: calculate_power(); break;
+        -:   42:            case 10: print_name(); break;
+        -:   43:            case 0: printf("Exiting program. Goodbye!\n"); break;
+    #####:   44:            default: printf("Invalid choice. Please try again.\n");
+    #####:   45:        }
+    #####:   46:        printf("\n");
+    #####:   47:    } while (choice != 0);
+    #####:   48:
+    #####:   49:    return 0;
+    #####:   50:}
+    #####:   51:#endif // EXCLUDE_MAIN_FOR_TESTS
+    #####:   52:
+    #####:   53:void show_menu() {
+    #####:   54:    printf("--- C Math Program Menu ---\n");
+    #####:   55:    printf("1.  Basic Math on 3 Integers (Add, Subtract, Multiply)\n");
+    #####:   56:    printf("2.  Add Two Integers\n");
+        -:   57:    printf("3.  Multiply Two Integers\n");
+    #####:   58:    printf("4.  Generate Multiplication Table\n");
+    #####:   59:    printf("5.  Generate Division Table\n");
+        -:   60:    printf("6.  Divide Integers (Quotient & Remainder)\n");
+    #####:   61:    printf("7.  Divide Two Decimal Numbers\n");
+        -:   62:    printf("8.  Calculate Average of 3 Integers\n");
+        -:   63:    printf("9.  Calculate Power (base^exponent)\n");
+        -:   64:    printf("10. Print a Name\n");
+    #####:   65:    printf("0.  Exit\n");
+    #####:   66:    printf("---------------------------\n");
+    #####:   67:}
+    #####:   68:
+    #####:   69:void generate_multiplication_table() {
+    #####:   70:  int n;
+    #####:   71:  printf("Enter an integer: ");
+    #####:   72:  scanf("%d", &n);
+    #####:   73:
+    #####:   74:  for (int i = 1; i <= 10; ++i) {
+    #####:   75:    printf("%d * %d = %d \n", n, i, n * i);
+    #####:   76:  }
+    #####:   77:}
+    #####:   78:
+    #####:   79:/**
+        -:   80: * @brief Testable function to add two integers.
+    #####:   81: * This function contains only the core logic.
+        -:   82: */
+    #####:   83:int add(int a, int b) {
+    #####:   84:    return a + b;
+        -:   85:}
+    #####:   86:
+    #####:   87:#include <stdio.h>
+        -:   88:
+    #####:   89:// Testable logic function
+        -:   90:int add1(int a, int b) {
+        -:   91:    return a + b;
+        -:   92:}
+        -:   93:
+        -:   94:// Input/output wrapper
+        9:   95:int add_two_numbers() {
+        9:   96:    int number1, number2, sum;
+        -:   97:
+        -:   98:    printf("Enter two integers: ");
+    #####:   99:    scanf("%d %d", &number1, &number2);
+        -:  100:
+        -:  101:    // Call the testable logic function
+    #####:  102:    sum = add(number1, number2);
+    #####:  103:    printf("Result: %d + %d = %d\n", number1, number2, sum);
+        -:  104:    return sum; // Return the result for testing purposes
+        -:  105:}
+    #####:  106:
+    #####:  107:int add_main() {
+    #####:  108:    add_two_numbers();
+        -:  109:    return 0;
+        -:  110:}
+    #####:  111:
+        -:  112:void divide_two_numbers_quotient_remainder() {
+        -:  113:    int dividend, divisor, quotient, remainder;
+    #####:  114:
+    #####:  115:    printf("Enter dividend: ");
+        -:  116:    scanf("%d", &dividend);
+    #####:  117:
+    #####:  118:    printf("Enter divisor: ");
+        -:  119:    scanf("%d", &divisor);
+    #####:  120:
+    #####:  121:    if (divisor == 0) {
+        -:  122:        printf("Error: Cannot divide by zero.\n");
+    #####:  123:    } else {
+    #####:  124:        quotient = dividend / divisor;
+        -:  125:        remainder = dividend % divisor;
+    #####:  126:
+    #####:  127:        printf("Quotient = %d\n", quotient);
+        -:  128:        printf("Remainder = %d\n", remainder);
+    #####:  129:    }
+        -:  130:}
+    #####:  131:
+        -:  132:void generate_division_table() {
+        -:  133:    int num;
+        -:  134:    float result;
+    #####:  135:
+    #####:  136:    printf("Enter an integer to generate its division table: ");
+        -:  137:    scanf("%d", &num);
+    #####:  138:
+    #####:  139:    printf("Division Table of %d:\n", num);
+        -:  140:    printf("-------------------\n");
+    #####:  141:
+    #####:  142:    for (int i = 1; i <= 10; i++) {
+    #####:  143:        if (i == 0) continue; // Should not happen in this loop, but good practice
+    #####:  144:        result = (float)num / i;
+        -:  145:        printf("%d / %d = %.2f\n", num, i, result);
+    #####:  146:    }
+        -:  147:}
+    #####:  148:
+        -:  149:void multiply_two_numbers() {
+        -:  150:    int num1, num2, product;
+    #####:  151:
+    #####:  152:    printf("Enter the first integer: ");
+        -:  153:    scanf("%d", &num1);
+    #####:  154:
+    #####:  155:    printf("Enter the second number: ");
+        -:  156:    scanf("%d", &num2);
+    #####:  157:
+    #####:  158:    product = num1 * num2;
+    #####:  159:    printf("Result: %d * %d = %d\n", num1, num2, product);
+        -:  160:}
+    #####:  161:
+        -:  162:void divide_two_floats() {
+        -:  163:    float num1, num2;
+    #####:  164:
+    #####:  165:    printf("Enter the numerator (can be a decimal): ");
+        -:  166:    scanf("%f", &num1);
+    #####:  167:
+    #####:  168:    printf("Enter the denominator (can be a decimal): ");
+        -:  169:    scanf("%f", &num2);
+    #####:  170:
+    #####:  171:    if (num2 == 0) {
+        -:  172:        printf("Cannot divide by zero.\n");
+    #####:  173:    } else {
+    #####:  174:        float result = num1 / num2;
+        -:  175:        printf("Result: %.2f / %.2f = %.2f\n", num1, num2, result);
+    #####:  176:    }
+        -:  177:}
+    #####:  178:
+        -:  179:void calculate_power() {
+        -:  180:    double base, exp, result;
+    #####:  181:
+    #####:  182:    printf("Enter the base number: ");
+        -:  183:    scanf("%lf", &base);
+    #####:  184:
+    #####:  185:    printf("Enter the exponent: ");
+        -:  186:    scanf("%lf", &exp);
+    #####:  187:
+    #####:  188:    result = pow(base, exp);
+    #####:  189:    printf("Result: %.2lf ^ %.2lf = %.2lf\n", base, exp, result);
+        -:  190:}
+    #####:  191:
+        -:  192:void print_name() {
+    #####:  193:    // Allocate enough space. "saisamridh" is 10 chars + 1 for null terminator.
+    #####:  194:    char myname[11] = "saisamridh";
+    #####:  195:    printf("My name is: %s\n", myname);
+        -:  196:}
+    #####:  197:
+        -:  198:void perform_basic_math() {
+    #####:  199:    int num1, num2, num3, result;
+    #####:  200:    printf("Enter three integers, separated by spaces: ");
+        -:  201:    scanf("%d %d %d", &num1, &num2, &num3);
+    #####:  202: 
+    #####:  203:    result = num1 + num2 + num3;
+        -:  204:    printf("Addition: %d + %d + %d = %d\n", num1, num2, num3, result);
+    #####:  205:
+    #####:  206:    result = num1 - num2 - num3;
+        -:  207:    printf("Subtraction: %d - %d - %d = %d\n", num1, num2, num3, result);
+    #####:  208: 
+    #####:  209:    result = num1 * num2 * num3;
+    #####:  210:    printf("Multiplication: %d * %d * %d = %d\n", num1, num2, num3, result);
+        -:  211:}
+        -:  212:
+        -:  213:/**
+        -:  214: * @brief Testable function to calculate the average of three integers.
+        -:  215: * This function contains only the core logic.
+        4:  216: */
+        -:  217:float average(int a, int b, int c) {
+        4:  218:    // Use 3.0f to ensure the division is done with floating-point precision.
+        -:  219:    return (a + b + c) / 3.0f;
+        -:  220:}
+    #####:  221:
+        -:  222:int calculate_average() {
+        -:  223:    int num1, num2, num3;
+    #####:  224:    float avg;
+    #####:  225:    printf("Enter three integers to average, separated by spaces: ");
+        -:  226:    scanf("%d %d %d", &num1, &num2, &num3);
+        -:  227:
+    #####:  228:    // Call the testable logic function
+    #####:  229:    avg = average(num1, num2, num3);
+    #####:  230:    printf("The average of %d, %d, and %d is: %.2f\n", num1, num2, num3, avg);
+        -:  231:    return avg; // Return the result for testing purposes
+        -:  232:}
+        -:  233:
+        -:  234:int sq_areamain() {
+        -:  235:    float side, area;
+        -:  236:
+        -:  237:    // Ask the user for the side of the square
+        -:  238:    printf("Enter the side of the square: ");
+        -:  239:    scanf("%f", &side);
+        -:  240:
+        -:  241:    // Calculate the area
+        -:  242:    area = side * side;
+        -:  243:
+        -:  244:    // Display the result
+        -:  245:    printf("Area of the square = %.2f\n", area);
+        -:  246:
+        -:  247:    return 0;
+        -:  248:}
+        -:  249:
+        -:  250:int rect_areamain() {
+        -:  251:    float length, width, area;
+        -:  252:
+        -:  253:    // Ask the user for length and width
+        -:  254:    printf("Enter the length of the rectangle: ");
+        -:  255:    scanf("%f", &length);
+        -:  256:
+        -:  257:    printf("Enter the width of the rectangle: ");
+        -:  258:    scanf("%f", &width);
+        -:  259:
+        -:  260:    // Calculate the area
+        -:  261:    area = length * width;
+        -:  262:
+        -:  263:    // Display the result
+        -:  264:    printf("Area of the rectangle = %.2f\n", area);
+        -:  265:
+        -:  266:    return 0;
+        -:  267:}
+        -:  268:
+        -:  269:int main(){
+        -:  270:
+        -:  271:    call_main();
+        -:  272:    sq_areamain();
+        -:  273:    rect_areamain();
+        -:  274:    return 0;
+        -:  275:}
