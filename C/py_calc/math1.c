@@ -18,7 +18,7 @@ int call_main() {
     int choice;
     do {
         show_menu();
-        printf("Enter your choice (0-9): ");
+        printf("Enter your choice (0-10): ");
         
         // Basic input validation
         if (scanf("%d", &choice) != 1) {

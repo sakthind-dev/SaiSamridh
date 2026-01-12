@@ -12,6 +12,9 @@ TEST(MathFunctionsTest, Add) {
     EXPECT_EQ(add(-1, 1), 0);
     EXPECT_EQ(add(0, 0), 0);
     EXPECT_EQ(add(-5, -10), -15);
+    EXPECT_EQ(add(-15, -10), -25);
+    EXPECT_EQ(add(-15, 10), -5);
+
 }
 
 // Test fixture for the average function
