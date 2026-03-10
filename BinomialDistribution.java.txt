@@ -1,0 +1,48 @@
+/******************************************************************************
+ *  Compilation:  javac BinomialDistribution.java
+ *  Execution:    java BinomialDistribution n
+ *
+ *  Prints out binomial coefficients such that such that a[n][k] contains
+ *  the probability that you get exactly k heads when you toss a
+ *  coin n times.
+ *
+ *  See also https://introcs.cs.princeton.edu/java/14array/BinomialCoefficients.java
+ *
+ *  % java BinomialDistribution 7
+ *  1/1
+ *  1/2 1/2
+ *  1/4 2/4 1/4
+ *  1/8 3/8 3/8 1/8
+ *  1/16 4/16 6/16 4/16 1/16
+ *  1/32 5/32 10/32 10/32 5/32 1/32
+ *  1/64 6/64 15/64 20/64 15/64 6/64 1/64
+ *
+ ******************************************************************************/
+
+public class BinomialDistribution {
+    public static void main(String[] args) {
+        int n = Integer.parseInt(args[0]);
+
+        double[][] binomial = new double[n+1][];
+
+        // initialize first row
+        binomial[1] = new double[1 + 2];
+        binomial[1][1] = 1.0;
+
+        // fill in coefficients of binomial distribution
+        for (int i = 2; i <= n; i++) {
+            binomial[i] = new double[i+2];
+            for (int k = 1; k < binomial[i].length - 1; k++)
+                binomial[i][k] = 0.5 * (binomial[i-1][k-1] + binomial[i-1][k]);
+        }
+
+        // print binomial coefficients
+        for (int i = 1; i <= n; i++) {
+            for (int k = 1; k < binomial[i].length - 1; k++) {
+                System.out.print(binomial[i][k] + " ");
+            }
+            System.out.println();
+        }
+    }
+
+}

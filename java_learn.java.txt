@@ -1,0 +1,111 @@
+/******************************************************************************
+
+Welcome to GDB Online.
+GDB online is an online compiler and debugger tool for C, C++, Python, Java, PHP, Ruby, Perl,
+C#, OCaml, VB, Swift, Pascal, Fortran, Haskell, Objective-C, Assembly, HTML, CSS, JS, SQLite, Prolog.
+Code, Compile, Run and Debug online from anywhere in world.
+
+*******************************************************************************/
+public class Main
+{
+	public static void main(String[] args) {
+		/*int a = Integer.parseInt(args[0]);
+		int b = Integer.parseInt(args[0]);
+		int c = Integer.parseInt(args[0]);
+		*/
+		System.out.println("Hello World");
+		
+		double r =0, r1=0;
+		for(int i=0;i<5;i++){
+		    r = Math.random();
+		    System.out.println(r);
+		    System.out.println(Math.min(r,r1));
+		    System.out.println(Math.max(r,r1));
+		    r1=r;
+		}
+		
+		//swap
+		r = 3;
+		r1 =4;
+		//System.out.println("Before exchange");
+		System.out.println(r);
+		System.out.println(r1);
+		
+		//System.out.println("After exchange");
+		double t =0;
+		t =r; //3
+		
+		r=r1; //4
+		r1=t; //3
+		System.out.println(r);
+		System.out.println(r1);
+		
+		//Flip
+		if (Math.random() < 0.5)
+            System.out.println("Heads");
+        else
+            System.out.println("Tails");
+
+		//sort
+		r = 33;
+		r1 =4;
+		//System.out.println("Before sort");
+		System.out.println(r);
+		System.out.println(r1);
+		
+		//System.out.println("After sort");
+		if (r1 < r){
+		double t1 =0;
+		t1 =r; //3
+		
+		r=r1; //4
+		r1=t1; //3
+		}
+		System.out.println(r);
+		System.out.println(r1);
+		
+		//while loo[p] - powers of 2
+		 int i = 0, n=10;
+         int v = 1;
+         while (i <= n)
+         {
+             System.out.println(v);
+             i = i + 1;
+             v = 2 * v;
+         } 
+         
+         //sqrt
+        double EPS = 1E-15;
+         double c = 46;//Double.parseDouble(args[0]);
+         t = c;
+         while (Math.abs(t - c/t) > t*EPS)
+            t = (c/t + t) / 2.0;
+         System.out.println(t); 
+
+	//tax
+	double income = 120000;//Double.parseDouble(args[0]);
+ double rate = 0.35;
+ if (income < 47450) rate = 0.22;
+ if (income >= 114650) rate = 0.25;
+ if (income >= 174700) rate = 0.28;
+ if (income >= 311950) rate = 0.33;
+ System.out.println(rate); 
+ 
+    //Large Factors - StackTraceElement
+    long n1 = 3757208;//Long.parseLong(args[0]);
+     for ( i = 2; i <= n1/i; i++) //<n1 will take more time
+     {
+        while (n1 % i == 0)
+        {
+            System.out.print(i + " ");
+            n1 = n1 / i;
+        }
+        if (n1> 1) System.out.println("TRACE " + i + " " + n1);
+        else  System.out.println();
+     }
+	}
+}
+
+/*1.2.30 Uniform random numbers. Write a program that prints five uniform random numbers between 0 and 1, their average 
+value, and their minimum and maximum values. Use Math.random(), Math.min(), and Math.max().
+*/
