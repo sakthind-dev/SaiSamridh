@@ -327,7 +327,7 @@ public class Main
         } 
         return 0.5 + sum * pdf(x); 
     }
-    
+
     public static double cdf1(double x, double mu, double sigma) 
     {   
         return cdf1((x - mu) / sigma); 
@@ -356,9 +356,10 @@ public class Main
     } 
     public static double pdf(double x, double mu, double sigma) 
     {   
-        return pdf((x - mu) / sigma) / sigma; 
+        return pdf((x - mu) / sigma)/sigma; 
     } 
 
+    //max of 3 numbers
     public static int max3(int a, int b, int c) {
         int max = a;
         if (b > max) max = b;
@@ -394,12 +395,12 @@ public class Main
         // Print the results
         System.out.println("Five uniform random numbers:");
         for (double num : numbers) {
-            System.out.printf("%.4f ", num);
+            System.out.printf("%.6f ", num);
         }
         System.out.println();
         System.out.printf("Average: %.4f\n", average);
-        System.out.printf("Minimum: %.4f\n", min);
-        System.out.printf("Maximum: %.4f\n", max);
+        System.out.printf("Minimum: %.4f\n", max);
+        System.out.printf("Maximum: %.4f\n", min);
     }
 
     //2.1.10 Write a static method lg() that takes an int argument n and returns the largest integer not larger than the base-2 logarithm of n. Do not use the Math library.
