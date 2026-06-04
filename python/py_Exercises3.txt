@@ -1,432 +1,5 @@
 # -Exercises3.py *- coding: utf-8 -*-
 
-#if statement
-age = 18
-if age >= 18:
-    print("You are an adult.")
-else:
-    print("You are not an adult.")
-
-#if-elif-else statement
-score = 85
-if score >= 90:
-    print("Grade: A")
-elif score >= 80:
-    print("Grade: B")
-elif score >= 70:
-    print("Grade: C")
-else:
-    print("Grade: D")
-
-#nested if statement
-num = 10
-if num > 0:
-    print("Positive number")
-    if num % 2 == 0:
-        print("Even number")
-    else:
-        print("Odd number")
-else:
-    print("Negative number")
-
-#file handling
-file = open('example.txt', 'r')
-content = file.read() # Read entire file
-print(content)
-file.close()
-
-file = open('example.txt', 'a')
-file.write('\nAppending new content.')
-file.close()
-
-file = open('example.txt', 'r')
-content = file.read() # Read entire file
-print(content)
-file.close()
-
-#with statement for file handling
-with open('example.txt', 'r') as file:
-    content = file.read()
-    print(content)
-    # No need to call file.close() - it is done automatically
-
-#List comprehension
-# Traditional for loop approach
-numbers = [1, 2, 3, 4, 5]
-squares = []
-for num in numbers:
-    squares.append(num ** 2)
-    print(squares) # Output: [1, 4, 9, 16, 25]
-
-# List comprehension approach
-squares = [num ** 2 for num in numbers]
-print(squares) # Output: [1, 4, 9, 16, 25]
-
-#nested list comprehension
-# List comprehension with a condition
-even_squares = [num ** 2 for num in range(10) if num % 2 == 0]
-print(even_squares) # Output: [0, 4, 16, 36, 64]
-
-# Nested list comprehension
-matrix = [[1, 2, 3], [4, 5, 6], [7, 8, 9]]
-flat = [num for row in matrix for num in row]
-print(flat) # Output: [1, 2, 3, 4, 5, 6, 7, 8, 9
-
-#key comprehension
-# Traditional for loop approach
-numbers = [1, 2, 3, 4, 5]
-squares_dict = {}
-for num in numbers:
-    squares_dict[num] = num ** 2
-print(squares_dict) # Output: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
-# Dictionary comprehension approach
-squares_dict = {num: num ** 2 for num in numbers}
-print(squares_dict) # Output: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
-
-# Dictionary comprehension with a 
-condition
-squared_even_dict = {num: num ** 2 for 
-num in range(10) if num % 2 == 0}
-print(squared_even_dict) # Output: {0: 0, 2: 4, 4: 16, 6: 36, 8: 64}
-'''w5
-'''
-
-"""
-Task 1: Control Structures - Grading System 
-Write a program that: 
-1. Takes a student's score (out of 100) as input. 
-2. Uses if-elif-else to assign a grade: 
-o 90–100: Grade A 
-o 80–89: Grade B 
-o 70–79: Grade C 
-o 60–69: Grade D 
-o Below 60: Grade F 
-3. Also implement a basic match-case (switch-case) to print: 
-o "Excellent" for Grade A 
-o "Good" for Grade B or C 
-o "Needs Improvement" for Grade D or F 
-"""
-score = int(input("Enter the students score (0-100): "))
-
-if 90 <= score <= 100:
-    grade = "A"
-elif 80 <= score <= 89:
-    grade = "B"
-elif 70 <= score <= 79:
-    grade = "C"
-elif 60 <= score <= 69:
-    grade = "D"
-else:
-    grade = "F"
-
-match grade:
-    case "A":
-        print("Excellent")
-    case "B" | "C":
-        print("Good")
-    case _:
-        print("Needs Improvement")
-
-
-'''
-Task 2: File Handling - Student Data 
-Write a program that: 
-1. Takes 3 student names and scores as input from the user. 
-2. Saves the data to a file called students.txt in the format: 
-Name - Score 
-3. Then read back the file and print each line prefixed with the line number. 
-'''
-students_details = []
-for i in range(3):
-    name = input(f"Enter name of student {i+1}: ")
-    score = input(f"Enter score of student {i+1}: ")
-    students_details.append((name, score))
-
-with open("students.txt", "w") as f:
-    for name, score in students_details:
-        f.write(f"{name} - {score}\n")
-
-with open("students.txt", "r") as f:
-    for i, line in enumerate(f, start=1):
-        print(f"{i}. {line.strip()}")
-
-
-'''
-Task 3: List and Dictionary Comprehensions - Data Transformation 
-Using the data below: 
-students = [ 
-{"name": "Alice", "score": 85}, 
-{"name": "Bob", "score": 72}, 
-{"name": "Charlie", "score": 91}, 
-{"name": "David", "score": 65}, 
-] 
-1. Use a list comprehension to create a list of names of students who scored above 80. 
-2. Use a dictionary comprehension to create a dictionary where: 
-o Keys are student names 
-o Values are "Pass" if score >= 70, otherwise "Fail" 
-'''
-students_details = [
-    {"name": "Alice", "score": 85},
-    {"name": "Bob", "score": 72},
-    {"name": "Charlie", "score": 91},
-    {"name": "David", "score": 65},
-]
-# List comprehension for names of students who scored above 80
-high_scorers = [student["name"] for student in students_details if student["score"] > 80]
-print("Students with scores above 80:", high_scorers)
-
-# Dictionary comprehension for pass/fail status
-pass_fail = {student["name"]: "Pass" if student["score"] >= 70 else "Fail" for student in students_details}
-print("Pass/Fail status:", pass_fail)
-
-'''
-Your practice tasks:
-1. Lists: Storing and Manipulating Data
-Task 1: Create a list of 5 integers. Find the sum and average.
-
-Task 2: Reverse a list without using built-in functions.
-
-Task 3: Print only even numbers from a given list.
-'''
-list1 = [10, 20, 30, 40, 50]
-print("Sum:", sum(list1))
-print("Average:", sum(list1)/len(list1))
-
-for i in range(len(list1)-1, -1, -1):
-    print(list1[i])
-for i in range(len(list1)):
-    print("i,", (len(list1)-i-1), list1[len(list1)-i-1])
-
-even_numbers = [num for num in list1 if num % 2 == 0]
-print("Even numbers:", even_numbers)
-
-
-'''
-2. Tuples: Immutable Sequences 
-Task 4: Create a tuple of 5 strings. Print each string on a new line.
-
-Task 5: Given a tuple of numbers, print the maximum and minimum values.
-
-Task 6: Concatenate two tuples.
-
-tup1 = (1, 2, 3)
-tup2 = (4, 5, 6)
-            Print the result.
-'''
-tup1 = ("apple", "banana", "cherry", "date", "elderberry")         
-for item in tup1:
-    print(item)
-tup2 = (10, 20, 5, 15, 25)
-print("Max:", max(tup2))
-print("Min:", min(tup2))
-tup3 = tup1 + tup2
-print("Concatenated tuple:", tup3)
-#tup2[1] = 100  # This will give an error because tuples are immutable
-
-tup1 = (1, 2, 3)
-tup2 = (4, 5, 6)
-tup3 = tup1 + tup2
-print("Concatenated tuple:", tup3)
-
-'''
-3. Dictionaries: Key-Value Pairs
-Task 7: Create a dictionary of student names and scores. Print names of students with scores above 75.
-
-Task 8: Add a new key-value pair to an existing dictionary.
-
-Task 9: Count the frequency of each word in a given sentence using a dictionary.
-'''
-students = {"Alice": 85, "Bob": 72, "Charlie": 90, "David": 68}
-
-print("Students with scores above 75:")
-for name, score in students.items():
-    if score > 75:
-        print(name)
-
-students["Eve"] = 80
-print("Students with scores above 75:")
-for name, score in students.items():
-    if score > 75:
-        print(name)
-
-sentence = "hello world hello ; Create a dictionary of student names and scores ; Print names of student with scores above 75"
-word_count = {}
-for word in sentence.split():
-    if word in word_count:
-        word_count[word] += 1
-    else:
-        word_count[word] = 1
-print("\nWord count:", word_count)
-
-for word, count in word_count.items():
-    print(f"|{word}| {count}|")
-
-'''
-4. Sets: Unique & Unordered Collections 
-Task 10: Given two sets:
-
-A = {1, 2, 3, 4, 5}
-B = {4, 5, 6, 7, 8}
-
-Write a program to print:
-- The union of A and B
-- The intersection of A and B
-- The difference of A - B
-Task 11: Remove duplicate elements from a list using a set.
-'''
-A = {1, 2, 3, 4, 5}
-B = {4, 5, 6, 7, 8}
-print("Union:", A | B)
-print("Intersection:", A & B)
-print("Difference (A - B):", A - B)
-my_list = [1, 2, 2, 3, 4, 4, 5]
-unique_set = set(my_list)
-unique_list = list(unique_set)
-print("Unique elements:", unique_list)
-
-
-'''
-5. Functions: Building Reusable Logic
-Task 12: Write a function is_even(n) to check if a number is even.
-
-Task 13: Write a function factorial(n) using a loop to compute the factorial of a number.
-
-6. Loops: Control Flow and Patterns
-Task 14: Print numbers from 1 to 50. For:
-Multiples of 3: print "Fizz"
-Multiples of 5: print "Buzz"
-Multiples of both: print "FizzBuzz"
-
-Task 15: Write a program to print the following pattern using a loop:*
-* *
-* * *
-* * * *
-* * * * *
-'''
-def is_even(n):
-    return n % 2 == 0
-
-even_numbers = [num for num in list1 if is_even(num)]
-print("Even numbers:", even_numbers)
-
-def factorial(n):
-    result = 1
-    for i in range(1, n + 1):
-        result *= i
-    return result
-
-def fizz_buzz():
-    for i in range(1, 51):
-        if i % 3 == 0 and i % 5 == 0:
-            print("FizzBuzz")
-        elif i % 3 == 0:
-            print("Fizz")
-        elif i % 5 == 0:
-            print("Buzz")
-        else:
-            print(i)
-
-def print_pattern():
-    for i in range(1, 6):
-        print("* " * i)
-
-factorial_result = factorial(5)
-print("Factorial of 5:", factorial_result)
-fizz_buzz()
-print_pattern()
-
-# nomenclature
-# {'Key1':[values],'Key2':[Values],......}
-subscription_details = {'Subscriber_name':['John','Tim','Linda','barb'], 'Age':[45,23,41,32],
-                       'Email_ID':['john@redeffmail.com','tim_ander@hotmail.com','linda@gmail.com','barb@gmail.com']}
-type(subscription_details)
-print(subscription_details)
-print(subscription_details['Subscriber_name'][1])
-subscription_details_empty = {'Subscriber_name':[], 'Age':[],
-                       'Email_ID':[]}
-print(subscription_details_empty)
-
-#pandas
-import pandas as pd
-pd.DataFrame(subscription_details)
-
-# [tuple1,tuple2,tuple3.....]
-cust_details = [('John',864),('Theresa',560),('Liz',890)]
-print(cust_details)
-type(cust_details)
-print(cust_details[0])
-type(cust_details[0])
-
-customer_details = ['John Smith',890,10879.84,True]
-print(customer_details[2])
-# series of elements
-# object_name[starting_index:ending_index] - Ending index is resolved as ending_index-1 
-print(customer_details[0:3])
-print(customer_details[-1])
-print(customer_details[3])
-print(customer_details[-3:])
-
-#set
-# Set
-Auto_survey1= set(['BMW', 'BMW','AUDI','Merc', 'Merc','Bentley','Mini Cooper','Suzuki','Hundai'])
-print(Auto_survey1)
-Auto_survey2 = {'Renault','Merc'}
-print(Auto_survey2)
-
-print(Auto_survey1 | Auto_survey2)
-
-# common values in 2 sets
-print(Auto_survey1 & Auto_survey2)
-
-#  Appending lists
-list1= [6,3,4,5,2]
-list2= [100,101,107,108,2,107,100]
-print(list1)
-print(list2)
-
-print(list1 + list2)
-print([list1 + list2])
-
-cust_info = ['Paul',35,True]
-print(cust_info)
-# append element to the end of list
-# listname.append(element_to_be_appended)
-cust_info.append(10945)
-print(cust_info)
-
-# append a new element in existing list at a defined index position
-cust_info.insert(1,"Service Occupation")
-print(cust_info)
-
-cust_info.remove(True)
-print(cust_info)
-
-# comparision operators
-john_credit_score = 800
-print(john_credit_score)
-threshold_credit_score = 700
-print(john_credit_score >= threshold_credit_score)
-Barb_credit_score = 480
-print(Barb_credit_score >= threshold_credit_score)
-
-# Scenario 1
-john_income = 10000
-john_existing_credit_cards = 2
-# (condition1) & (condition 2)
-print((john_income>5000) & (john_existing_credit_cards<=4))
-
-# Scenario 1
-john_income = 10000
-john_existing_credit_cards = 2
-# (condition1) & (condition 2)
-print((john_income>5000) | (john_existing_credit_cards<=4))
-
-# Scenario 4
-john_income = 4000
-john_existing_credit_cards = 6
-# (condition1) & (condition 2)
-print((john_income>5000) | (john_existing_credit_cards<=4))
-
 """
 TUPLES
 Tuple (like the list type this is a data collection type)
@@ -469,7 +42,6 @@ print(tup[-2])
 print(tup[1:3])
 print(tup[:3])
 #%%
-
 """
 DICTIONARIES
 Dictionary data type (another collection datatype along with list and tuple):
@@ -624,25 +196,18 @@ agedict = {"George":"17","Sally":"19",
              "Catherine":"18"}
 #%%
 # Which work (you might copy each into IPython and see whether it works)?
-print(namelist[1] )  # yes or no
-print(mytuple[1] )   # yes or no
-print(agedict)    # yes or no      
+namelist[1]   # yes or no
+mytuple[1]    # yes or no
+agedict[1]    # yes or no      
 #%%
 # Which work?
 namelist.append("Rod")   # yes or no
-
-#tuple cannot editable and changeable
-#mytuple.append("Rod")    # yes or no
-
-#no append for dict
-#agedict.append("Rod")    # yes or no
+mytuple.append("Rod")    # yes or no
+agedict.append("Rod")    # yes or no
 #%%
-
 # Which work?
 namelist[1]="Rod"    # yes or no
-
-#tuple cannot editable and changeable
-#mytuple[1] = "Rod"   # yes or no
+mytuple[1] = "Rod"   # yes or no
 agedict["Rod"]="23"  # yes or no
           
 #%%
@@ -728,15 +293,10 @@ outline of what needs to be done is given as comments.
 #%% 
 def write_to_file(filename, myname, myage, major):
     # open file first
-    outfile = open(filename, 'w')
     outfile.write("My name is "+ myname + " \n")
-    
     # write out the age and major in two lines
-    outfile.write("My age is " + str(myage) + " \n")
-    outfile.write("I am majoring in " + major + " \n")
-
     # close the file
-    outfile.close()
+
     
 #%%
 """
@@ -1051,16 +611,9 @@ import csv
 
 def read_csv_file2(filename):
     """Reads a CSV file and prints each row without list brackets. """
-
     f = open(filename)
     for row in csv.reader(f):
-        #pass # replace this line with your code
-        n = row.split(",")
-        print(n)
-        for item in n:
-            print(item)
-        #print(row[0], row[1], row[2])
-
+        pass # replace this line with your code
     f.close()
 #%%
 """
@@ -1130,7 +683,6 @@ Solution starter:
 def name_phone(csv_filename):
     
     # open the csv file here
-    fout = open(csv_filename, 'w', newline='')
     
     while True:
         nextname = input("Enter a friend's name, press return to end: ")
@@ -1139,17 +691,10 @@ def name_phone(csv_filename):
         print(nextname) 
         
         # add lines here to build a row (that is, a list) and append these
-        row=[]  # this is the row list that we will write to the csv file. It must be inside the loop because we need a new empty list for each row.
-        row.append(nextname)  # append the name to the row list
-        nextphone = input("Enter your friend's phone: ")    
-        row.append(nextphone)  # append the phone to the row list
-
         # two pieces of data to it.  Write to the csv file
-        csv.writer(fout).writerow(row)
         
     # don't forget to close the csv file
-    fout.close()
-    
+        
 #%% 
 """
 Example run:
@@ -1174,7 +719,7 @@ Jerry Seinfeld,(212) 434-1234
 Elaine Benes,(212) 123-6543
 
 """
-"""
+ """
 Updating a csv file
 
 Let us read a CSV file containing a person's daily weights and compute the 
@@ -1224,158 +769,3 @@ def update_csv(old_name, new_name):
     fin.close()
     fout.close()     
 #%%
-
-'''
-Exercise: Convert this function to a standalone program or script that
-takes two file names from the command line and copies one to the other.
-
-Steps:
-1. Delete "Def" line. You don't need it.
-2. Use Edit menu of Spyder to Unindent all the lines.
-3. import the system library sys
-4. sys.argv is a list of the filenames following the program name.
-   sys.argv[0] is the program name, sys.argv[1] is first argument, etc.
-   Get the infilename and outfilename from this list.
-5. Save the program as copy_file.py
-6. Run the program from a terminal window (Mac), a cmd.exe window (PC,) or
-   a command prompt within Spyder (use Tools>Open command prompt)
-
-Here is how running it should look:
->python copy_file.py humptydumpty.txt newhumpty.txt
-"""
-
-""" Opens two files and copies one into the other line by line. """
-'''
-import sys
-
-infilename = sys.argv[1]
-outfilename = sys.argv[2]
-
-infile = open(infilename)
-outfile = open(outfilename,'w')
-
-for line in infile:
-    outfile.write(line)
-    
-infile.close()
-outfile.close()
-
-#word,line,char count
-import sys
-
-filename = sys.argv[1]
-# print("\n",filename,"\n")  # You can check that the filename is correct
-    
-text_file = open(filename)     # open the file for reading
-
-# initialize line, word, and char counters to 0
-linect = 0
-wordct = 0     
-charct = 0
-
-for line in text_file:           # step through each line in the text file
-    linect = linect + 1
-    for word in line.split():    # split into a list of words
-        wordct = wordct + 1
-    charct = charct + len(line)
-
-text_file.close() 
-               
-print(linect, wordct, charct )
-
-#words count program
-filename = sys.argv[1]
-# print("\n",filename,"\n")  # You can check that the filename is correct
-    
-text_file = open(filename)     # open the file for reading
-
-# Set up an empty dictionary to start a standard design pattern loop
-words_dic = {}
-
-# This loop adds each word to the dictionary and updates its count. Change 
-# all words to lower case so Horse and horse are seen as the same word.
-for line in text_file:         # step through each line in the text file
-    for word in line.lower().split():   # split into a list of words
-        word = word.strip("'?,.;!-/\"") # strip out the stuff we ignore
-        if word not in words_dic:
-            words_dic[word] = 0      # add word to words with 0 count
-        words_dic[word] = words_dic[word] + 1    # add 1 to the count
-
-text_file.close() 
-               
-# Sorts the dictionary words into a list and then print them out
-print("List of words in the file with number of times each appears.")
-word_list = sorted(words_dic)
-for word in word_list:
-    print(words_dic[word], word)
-
-
-""" Opens file and prints its contents line by line. """
-import sys     # we need this library to deal with operating system
-
-filename = sys.argv[1]
-
-infile = open(filename)
-
-for line in infile:
-    print(line,end="") # the file has "\n" at the end of each line already
-
-infile.close()
-
-#plotting with matplotlib
-import matplotlib.pyplot as plt
-plt.plot([23,35,78,90,64], color='red', marker='o', label='PSeries')
-plt.xlabel('Population')
-plt.ylabel('Total count')
-plt.title('Population Growth')
-plt.legend()
-
-plt.style.use('seaborn-v0_8') # You can try other styles like 'ggplot', 'fivethirtyeight', 'dark_background', etc.
-# You can also list available styles with `print(plt.style.available)`
-
-print(plt.style.available)
-
-plt.savefig('my_plot.png')
-print('Plot saved as my_plot.png')
-
-#calfiornia population growth
-import pandas as pd
-
-# Load the california_housing_train.csv dataset into a DataFrame
-california_df = pd.read_csv('/content/sample_data/california_housing_train.csv')
-
-# Display the first 5 rows of the DataFrame
-display(california_df.head())
-
-# Calculate and display summary statistics
-display(california_df.describe())
-
-plt.figure(figsize=(10, 6))
-plt.hist(california_df['median_house_value'], bins=50, edgecolor='black')
-plt.title('Distribution of Median House Value')
-plt.xlabel('Median House Value')
-plt.ylabel('Frequency')
-plt.grid(True)
-plt.show()
-
-plt.figure(figsize=(10, 6))
-plt.scatter(california_df['median_income'], california_df['median_house_value'], alpha=0.5)
-plt.title('Median Income vs. Median House Value')
-plt.xlabel('Median Income')
-plt.ylabel('Median House Value')
-plt.grid(True)
-plt.show()
-
-# Group by 'housing_median_age' and calculate the mean for each group
-mean_by_age = california_df.groupby('housing_median_age').mean()
-
-# Display the resulting DataFrame
-display(mean_by_age.head())
-
-plt.figure(figsize=(12, 7))
-plt.plot(mean_by_age.index, mean_by_age['median_house_value'], marker='o', linestyle='-')
-plt.title('Mean Median House Value vs. Housing Median Age')
-plt.xlabel('Housing Median Age')
-plt.ylabel('Mean Median House Value')
-plt.grid(True)
-plt.show()

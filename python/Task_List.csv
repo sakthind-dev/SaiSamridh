@@ -1,0 +1,19 @@
+﻿Id,Status,Severity,State,Developer,Task,Editor,Deadline,Start Date,End Date,Document Link
+Session1,Ready for final review,Critical,Not Started,Ram,leaders guide,Muruga,02-03-2026,28/1/2026,02-03-2026,ok
+Session2,Ready for Review,High,In Progress,Krishna,handouts,Amma,02-04-2026,29/1/2026,02-04-2026,NG
+Session3,Not Started,Medium,Changes needed,Siva,slide deck,Bhramha,02-03-2026,28/1/2026,02-03-2026,ok
+Session4,Not Started,Low,Not Started,Ram,process review,Bhramha,02-03-2026,28/1/2026,02-03-2026,ok
+Session5,Not Started,Critical,In Progress,Siva,Testing,Amma,02-03-2026,28/1/2026,02-03-2026,ok
+Session6,Completed,Critical,Completed,Ganesh,Data table,Muruga,02-03-2026,28/1/2026,02-03-2026,ok
+Session2,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+Session3,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+Session4,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+,,,,,,,,,,
+Session5,,,,,,,,,,

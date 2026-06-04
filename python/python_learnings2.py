@@ -663,4 +663,622 @@ def diner_waitress():
     print(order)
 #%%
 
+diner_waitress()
+
 #%%
+
+#Classes. A class is a way to define a new data type. It is a template for creating objects. 
+# An object is an instance of a class. A class can have attributes (data) and methods (functions that operate on the data). 
+# Here is a simple example of a class for a Dog.
+class Dog:
+    def __init__(self, name, breed):
+        self.name = name
+        self.breed = breed
+
+    def bark(self):
+        return f"{self.name} says woof!"
+
+my_dog = Dog('Buddy', 'Golden Retriever')
+print(my_dog.bark()) # Output: Buddy says woof
+
+class Cat:
+    def __init__(self, name, color):
+        self.name = name
+        self.color = color
+
+    def meow(self):
+        return f"{self.name} says meow!"
+
+my_cat = Cat('Whiskers', 'Orange')
+print(my_cat.meow()) # Output: Whiskers says meow!
+
+class Circle:
+    def __init__(self, radius):
+        self.radius = radius
+
+    def area(self):
+        return 3.14 * self.radius ** 2
+
+my_circle = Circle(5)
+print(my_circle.area()) # Output: 78.5  
+
+class Rectangle:
+    def __init__(self, width, height):
+        self.width = width
+        self.height = height
+
+    def area(self):
+        return self.width * self.height
+
+my_rectangle = Rectangle(4, 6)
+print(my_rectangle.area()) # Output: 24
+
+class area:
+    def __init__(self, shape, dimensions):
+        self.shape = shape
+        self.dimensions = dimensions
+
+    def calculate_area(self):
+        if self.shape == 'circle':
+            radius = self.dimensions[0]
+            return 3.14 * radius ** 2
+        elif self.shape == 'rectangle':
+            width, height = self.dimensions
+            return width * height
+        else:
+            return "Shape not supported"    
+
+my_area_circle = area('circle', [5])
+print(my_area_circle.calculate_area()) # Output: 78.5
+my_rectangle_area = area('rectangle', [4, 6])
+print(my_rectangle_area.calculate_area()) # Output: 24
+
+class calculator:
+    def add(self, a, b):
+        return a + b
+
+    def subtract(self, a, b):
+        return a - b
+
+    def multiply(self, a, b):
+        return a * b
+
+    def divide(self, a, b):
+        if b != 0:
+            return a / b
+        else:
+            return "Cannot divide by zero"
+
+my_calculator = calculator()
+print(my_calculator.add(10, 5)) # Output: 15
+
+class car:
+    def __init__(self, make, model, year):
+        self.make = make
+        self.model = model
+        self.year = year
+
+    def description(self):
+        return f"{self.year} {self.make} {self.model}"
+
+my_car = car('Toyota', 'Camry', 2020)
+print(my_car.description()) # Output: 2020 Toyota Camry
+
+#inheritance. A class can inherit from another class, which means it can use the attributes and methods of the parent class. Here is an example of a class for a Dog that inherits from an Animal class.
+class Animal:
+    def __init__(self, name):
+        self.name = name
+
+    def eat(self):
+        return f"{self.name} is eating."    
+    def speak(self):
+        pass
+
+class Dog(Animal):
+    def bark(self):
+        return f"{self.name} says woof!"
+    def speak(self):
+        return f"{self.name} says woof!"
+
+my_dog = Dog('Buddy')
+print(my_dog.eat()) # Output: Buddy is eating.
+print(my_dog.bark()) # Output: Buddy says woof!
+
+my_pet = Dog('Max')
+print(my_pet.speak()) # Output: Max says woof
+
+#polymorphism. Polymorphism is the ability of different classes to be treated as instances of the same class through inheritance. 
+# For example, if we have a function that takes an Animal object and calls its speak method, it can work with any subclass of Animal, 
+# such as Dog or Cat.
+class Bird:
+    def speak(self):
+        return "Tweet!"
+class Cat:
+    def speak(self):
+        return "Meow!"
+
+animals = [Bird(), Cat()]
+for animal in animals:
+    print(animal.speak()) # Output: # Tweet! # Meow!
+
+#encapsulation. Encapsulation is the concept of hiding the internal state and behavior of an object and only exposing a public interface. 
+# This can be achieved in Python by using private attributes and methods. Private attributes are defined with a double underscore 
+# prefix, and they cannot be accessed directly from outside the class.
+#abstract classes and interfaces. An abstract class is a class that cannot be instantiated and is meant to be subclassed. 
+# It can have abstract methods, which are methods that are declared but not implemented in the abstract class. 
+# An interface is a type of abstract class that only contains abstract methods and no implementation.
+class BankAccount:
+    def __init__(self, balance):
+        self.__balance = balance # Private attribute
+
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+        return self.__balance
+
+account = BankAccount(1000)
+print(account.deposit(500)) # Output: 1500
+#print(account.__balance) # Error: AttributeError
+
+#Generators. A generator is a special type of iterator that allows you to iterate over a sequence of values without storing them all in memory at once. 
+# You can create a generator using a function with the yield keyword. Example of a generator that generates the Fibonacci sequence.
+def fibonacci(n):
+    a, b = 0, 1
+    for _ in range(n):
+        yield a
+        a, b = b, a + b 
+
+for num in fibonacci(10):
+    print(num) # Output: 0 1 1 2 3 5 8 13 21 34
+
+def generator_example():
+    for i in range(5):
+        yield i * i
+
+for square in generator_example():
+    print(square) # Output: 0 1 4 9 16
+
+def count_up_to(n):
+    count = 0
+    while count < n:
+        yield count
+        count += 1
+
+for number in count_up_to(5):
+    print(number) # Output: 0, 1, 2, 3, 4
+
+def countdown(n):
+    while n > 0:
+        yield n
+        n -= 1
+
+for number in countdown(5):
+    print(number)# Output: 5, 4, 3, 2, 
+
+def comprehension_example():
+    # List comprehension to create a list of squares
+    squares = [x**2 for x in range(10)]
+    print(squares) # Output: [0, 1, 4, 9, 16, 25, 36, 49, 64, 81]
+
+comprehension_example()
+
+squares_gen = (x**2 for x in range(10)) # Generator expression
+for square in squares_gen:
+    print(square) # Output: 0, 1, 4, 9, 16, 25, 36, 49, 64, 81
+
+''' W6
+1. Generators (Efficient Sequences)
+Task 1: Write a generator function generate_even_numbers(n) that yields even numbers up to n.
+Task 2: Create a generator expression to generate squares of numbers from 1 to 10 and print the output.
+Task 3: Write a generator function to yield Fibonacci numbers up to n terms.
+'''
+
+def generate_even_numbers1(n):
+    for i in range(n):
+        if (i %2 ==0):
+        yield i
+
+def generate_square_numbers1(n):
+    squ =[x*x for x in range(n) ]
+    return squ
+
+def generate_fib_numbers1(n):
+    i=0
+    j=1
+    c=0
+    print(i, j)
+    for _ in range(n):
+        yield i
+        c = i +j
+        i = j
+        j = c
+        #print(c)
+
+generate_even_numbers1(10)
+generate_square_numbers1(10)
+generate_fib_numbers1(10)
+
+for num in generate_even_numbers1(10):
+    print(num)
+
+'''
+for square in generate_square_numbers(10):
+    print(square)
+
+for fib in generate_fib_numbers(10):
+    print(fib)
+'''
+
+''' W6
+1. Generators (Efficient Sequences)
+Task 1: Write a generator function generate_even_numbers(n) that yields even numbers up to n.
+Task 2: Create a generator expression to generate squares of numbers from 1 to 10 and print the output.
+Task 3: Write a generator function to yield Fibonacci numbers up to n terms.
+'''
+#Generators
+def generate_even_numbers(n):
+    for i in range(n):
+        if (i%2==0):
+            yield i
+            #print(i)
+
+for n in generate_even_numbers(10):
+    print(n)
+#generate_even_numbers(10)
+
+def generate_square_numbers(n):
+    squ =[x*x for x in range(n) ]
+#generate_square_numbers(10)
+
+squares_gen = (x**2 for x in range(10)) # Generator expression
+for square in squares_gen:
+    print(square) # Output: 0, 1, 4, 9, 16, 25, 36, 49, 64, 81
+
+def generate_fib_numbers(n):
+    a = 0
+    b = 1
+    for i in range(n):
+        yield a
+        a, b = b, a + b 
+        #print(a)
+
+for n in generate_fib_numbers(10):
+    print(n)
+
+def fib_numbers(n):
+    a = 0
+    b = 1
+    print(a)
+    for i in range(n):
+        #yield a
+        a, b = b, a + b 
+        #print(a)
+
+#fib_numbers(10)
+
+'''Section 2: Iterators 
+4. Create a list of strings. Obtain an iterator from the list and print each element using 
+next(). 
+5. Create an iterator to iterate over a dictionary and print both keys and values
+'''
+#Iterators
+def func_iter():
+    strlist = ['dog', 'cat', 'cow', 'tiger','lion','elephant']
+    iobj = iter(strlist)
+    print(next(iobj))
+    print(next(iobj))
+    print(next(iobj))
+
+    for io in iobj:
+        print(io)
+
+func_iter()
+
+def func_dict():
+    dict ={'Ram':35, 'Raj':36, 'Rah': 37}
+    for k, v in dict.items():
+        print(k,v)
+
+func_dict()
+
+'''
+Section 3: Decorators 
+6. Write a simple decorator that prints "Function is being called" before the execution of 
+the actual function. 
+7. Create a decorator that logs the execution time of a function. Use the time module. 
+8. Write a decorator that checks if the user is authenticated (simulate with a Boolean 
+variable is_authenticated), and only then allows the function to run. If not authenticated, 
+print "Access Denied". 
+'''
+#Decorator
+def f_decorator(func):
+    def fwrapper():
+        print("Function is being called")
+        func()
+    return fwrapper
+
+@f_decorator
+def func_iter1():
+    strlist = ['dog', 'cat', 'cow', 'tiger','lion','elephant']
+    iobj = iter(strlist)
+    print(next(iobj))
+    print(next(iobj))
+    print(next(iobj))
+
+    for io in iobj:
+        print(io)
+
+func_iter1()
+
+import time
+def f_decorator_logtime(func):
+    def fwrapper(*args, **kwargs):
+        t1 = time.time()
+        r = func(*args, **kwargs)
+        t2 = time.time()
+        print(f'Time:{t2-t1} seconds')
+        return r
+    return fwrapper
+
+@f_decorator_logtime
+def my_func():
+    time.sleep(1)
+
+my_func()
+
+is_authenticated = False
+def f_decorator_check(func):
+    def fwrapper():
+        if(is_authenticated == True):     
+            my_funcT()
+        else:
+            print("Access Denied")
+    return fwrapper
+
+@f_decorator_check
+def my_funcT():
+    print("Secured access allowed")
+
+my_funcT()
+
+'''
+Section 4: Context Managers 
+9. Use the built-in with open() context manager to read a text file and print its contents. 
+10. Write a context manager using the contextlib module that temporarily changes the 
+working directory, and prints the current directory inside the context and restores it 
+afterward. 
+'''
+
+text = (
+    "Section 4: Context Managers "
+    "Use the built-in with open() context manager to read a text file and print its contents. "
+    "10. Write a context manager using the contextlib module "
+    "that temporarily changes the working directory, prints the current directory inside "
+    "the context, and restores it afterward."
+)
+
+f = open('sample.txt', 'w')
+f.write(text)
+f.close()
+
+def openf():
+    file = open('sample.txt', 'r')
+    try:
+        data = file.read()
+        print(data)
+    finally:
+        file.close()  # Ensures the file is closed even if an error occurs
+        
+def openf_with():
+    with open('sample.txt', 'r') as file:
+        data = file.read()
+        print(data)
+
+openf_with()
+
+import os
+from contextlib import contextmanager
+
+@contextmanager
+def chg_dir(npath):
+    ppath = os.getcwd()
+    os.chdir(npath)
+    try:
+        yield
+    finally:
+        os.chdir(ppath)
+
+with chg_dir("/tmp"):
+    print("Inside context:", os.getcwd())
+print("restored", os.getcwd())
+exit()
+
+#numpy. Numpy is a powerful library for numerical computing in Python. It provides support for arrays, matrices, and a wide range of 
+# mathematical functions. Here are some examples of using numpy: 
+import numpy as np
+arr = np.array([1,2,3,4,5])
+print(arr) # Output: [1 2 3 4 5]
+print(arr**2) # Output: [ 1  4  9 16 25]
+print(arr*2) # Output: [ 2  4  6  8 10]
+print(arr.mean()) # Output: 3.0
+print(arr.sum()) # Output: 15
+print(arr[0]) # Output: 1
+print(arr[1:4]) # Output: [2 3 4]
+print(arr[arr > 2]) # Output: [3 4 5]
+print(arr.shape) # Output: (5,)
+print(arr.ndim) # Output: 1
+print(arr.dtype) # Output: int64
+print(arr.size) # Output: 5
+print(arr.itemsize  ) # Output: 8 (bytes per element )
+print(arr.reshape(5,1)) # Output: [[1] [2] [3] [4] [5]]
+
+#pandas. Pandas is a library for data manipulation and analysis. It provides data structures like Series and DataFrame, 
+# which are built on top of numpy arrays. Here are some examples of using pandas:
+#!pip install pandas
+import pandas as pd
+
+print(pd.__version__) # Output: 1.3.2 (or whatever the current version is
+
+c_age = pd.Series([23,45,67,56,67,90,82])
+print(c_age) # Output: 0    23
+              #         1    45
+              #         2    67
+              #         3    56
+              #         4    67
+              #         5    90
+              #         6    82
+print(type(c_age)) # Output: <class 'pandas.core.series.Series'>
+print(c_age.mean()) # Output: 63.714285714285715
+print(c_age.median()) # Output: 67.0
+print(c_age.dtype) # Output: int64
+age = c_age+5 # Output: 0    28
+          #         1    50
+            #         2    72
+
+
+c_age = pd.Series([25, 30, 35], index=['Alice', 'Bob', 'Charlie'])
+print(c_age) # Output: Alice      25
+             #         Bob        30
+             #         Charlie    35
+
+data = {'Name': ['Alice', 'Bob', 'Charlie'], 'Age': [25, 30, 35], 'City': ['New York', 'Los Angeles', 'Chicago']}
+df = pd.DataFrame(data)
+print(df) # Output:    Name  Age         City
+          #        0  Alice   25     New York
+          #        1    Bob   30  Los Angeles
+          #        2 Charlie   35      Chicago
+print(df['Name']) # Output: 0      Alice
+                  #         1        Bob
+                  #         2    Charlie
+
+#implicit coercion. When you perform operations on pandas Series or DataFrames, pandas will automatically align the data based on the 
+# index and perform implicit coercion if necessary. For example, if you add two Series with different indices, pandas will align them 
+# based on the index and fill in missing values with NaN.
+s1 = pd.Series([1, 2, '3',], index=['a', 'b', 'c'])
+s2 = pd.Series([4, 5, '6'], index=['b', 'c', 'd'])
+result = s1 + s2    
+print(result) # Output: a    NaN
+              #         b    6.0    
+
+#explicit coercion. You can also explicitly convert data types in pandas using methods like astype(). 
+# For example, to convert a Series of strings to integers:
+s = pd.Series([1, 2, 3],dtype='int64')
+s_int = s.astype(int)
+print(s_int) # Output: 0    1
+                #         1    2
+
+sales_region_wise = pd.DataFrame({'Region': ['North', 'South', 'East', 'West'], 'Sales': [100, 150, 200, 250]})
+print(sales_region_wise) # Output:   Region  Sales
+
+sales_region_wise = ['North', 'South', 'East', 'West', 100, 150, 200, 250]
+print(sales_region_wise) # Output:   Region  Sales
+s = pd.Series(sales_region_wise[:4], sales_region_wise[4:])
+print(s) # Output: 0    North
+         #         1    South
+         #         2    East
+         #         3    West
+         #         4    100
+         #         5    150
+         #         6    200
+         #         7    250
+print(s.mean()) # Output: 175.0 (average of the numeric values, ignoring the strings)
+print(s.mean()) # Output: 175.0 (same as avg())
+print(s==0)
+print(s[s==0]) # Output: 0    False
+print(type(s[0])) # Output: <class 'str'> (the first element is a string)
+print(type(s[6])) 
+
+#filtering a DataFrame. You can filter a DataFrame based on conditions. For example, to filter the DataFrame to include 
+# only rows where Age is greater than 28:
+filtered_df =df[df['Age']>28]
+print(filtered_df) # Output:    Name  Age         City
+                    #         1    Bob   30  Los Angeles
+                    #         2 Charlie   35      Chicago
+#grouping a DataFrame. You can group a DataFrame by a column and perform aggregate functions on the groups. For example, 
+# to group the DataFrame by City and calculate the mean Age for each city:
+grouped_df = df.groupby('City').mean()
+print(grouped_df) # Output
+                    #                 Age
+                    # City
+                    # Chicago       35.0
+                    # Los Angeles   30.0
+                    # New York      25.0
+
+#matplotlib. Matplotlib is a library for creating static, animated, and interactive visualizations in Python. 
+# Here are some examples of using matplotlib:
+import matplotlib.pyplot as plt
+x = [1, 2, 3, 4, 5]
+y = [1, 4, 9, 16, 25]
+plt.plot(x, y)
+plt.title('Square Numbers')
+plt.xlabel('x')
+plt.ylabel('y')
+plt.show() # This will display the plot
+
+#creating a bar chart
+categories = ['A', 'B', 'C', 'D']
+values = [10, 15, 7, 12]
+plt.bar(categories, values)
+plt.title('Bar Chart Example')
+plt.xlabel('Categories')
+plt.ylabel('Values')
+plt.show() # This will display the bar chart
+
+#creating subplots
+fig, axs = plt.subplots(2, 2) # 2 rows, 2 columns of subplots
+axs[0, 0].plot(x, y) # Top-left subplot
+axs[0,1].scatter(x, y) # Top-right subplot
+axs[1,0].bar(x, y) # Bottom-left subplot
+axs[1,1].hist(y) # Bottom-right subplot
+axs[0, 0].set_title('Line Plot')
+axs.show() # This will display the subplots
+
+x = np.linspace(0, 10, 100)
+y1 = np.sin(x)
+y2 = np.cos(x)
+plt.subplot(2, 1, 1) # 2 rows, 1 column, first subplot
+plt.plot(x, y1) 
+plt.title('Sine Wave')
+plt.subplot(2, 1, 2) # 2 rows, 1 column, second subplot
+plt.plot(x, y2)
+plt.title('Cosine Wave')
+plt.tight_layout() # Adjust layout to prevent overlap   
+plt.show() # This will display the subplots
+
+emp_records = pd.DataFrame({'Employee': ['Alice', 'Bob', 'Charlie'], 'Department': ['HR', 'IT', 'Finance'], 'Salary': [50000, 60000, 55000]})
+print(emp_records) # Output:   Employee Department  Salary
+
+print(emp_records['Department']) # Output: 0         HR
+                                #         1         IT  
+                                #         2    Finance
+print(emp_records[emp_records['Salary'] > 55000]) # Output:   Employee Department  Salary
+                                                #         1      Bob         IT   60000
+print(emp_records.groupby('Department')['Salary'].mean()) # Output: Department
+                                                        # HR            50000.0
+                                                        # IT            60000.0
+                                                        # Finance       55000.0
+print(emp_records.loc['Alice']) # Output: Employee    Alice
+                                # Department       HR
+                                # Salary        50000                          # Name: Alice, dtype: object     
+
+emp_records.iloc[[0,1],:] # Output:   Employee Department  Salary
+                        #         0    Alice         HR   50000
+                        #         1      Bob         IT   60000
+emp_records.iloc[[0,2],[0,2]] # Output:   Employee  Salary
+                            #         0    Alice   50000
+                            #        2  Charlie   55000
+                            # Note: iloc uses integer-based indexing, while loc uses label-based indexing.
+                            # In this example, iloc[[0,1],:] selects the first two rows (Alice and Bob) and all columns,
+                            #  while iloc[[0,2],[0,2]] selects the first and third rows (Alice and Charlie) and the first and third columns (Employee and Salary).
+                            # In contrast, loc['Alice'] selects the row with the label 'Alice' and all columns.
+emp_records.iloc[:2,0,2 ] # Output:   Employee Department  Salary
+
+#loc
+emp_records.loc['Alice'] # Output: Employee    Alice
+emp_records.loc[['Alice', 'Bob'],:] # Output: 50000
+
+#csv
+emp_records.to_csv('employee_records.csv', index=False) # This will save the DataFrame to a CSV file without the index
+loaded_emp_records = pd.read_csv('employee_records.csv') # This will load the DataFrame from the CSV file
+print(loaded_emp_records) # Output:   Employee Department  Salary
+# %%
