@@ -127,11 +127,7 @@ x = "awesome"
 def myfunc():
 	global x1
 	x = "fantastic"
-	x1 = xHi Saravana kumar, Hope you are doing well. I'm sakthi from visteon
-
-I'm planning to explore outside based on my interest and current experience. Please let me know if you know any opening in your organization and outside as well.
-
-Looking abroad opportunity and Chennai location if roles are good
+	x1 = x
 	print("Python is " + x)
 
 myfunc()

@@ -108,11 +108,6 @@ numpy_array[:] = 0
 print("The new tensor points to numpy_array : ", new_tensor)
 print("and back to numpy array points to the tensor: ", back_to_numpy)
 
-# Set all elements in numpy array to zero 
-numpy_array[:] = 0
-print("The new tensor points to numpy_array : ", new_tensor)
-print("and back to numpy array points to the tensor: ", back_to_numpy)
-
 # Convert a panda series to a tensor
 
 pandas_series=pd.Series([0.1, 2, 0.3, 10.1])
@@ -349,8 +344,12 @@ print("Type AFTER converting: ", new_tensor.dtype)
 # try to convert Pandas Series to tensor
 
 df = pd.DataFrame({'A':[11, 33, 22],'B':[3, 3, 2]})
-# Use tensor_obj[row, column] and tensor_obj[row][column] to access certain position
+series_a = df['A']
+tensor_from_series = torch.from_numpy(series_a.values)
+print("Pandas Series to Tensor:", tensor_from_series)
+print("Type after converting:", tensor_from_series.dtype)
 
+# Use tensor_obj[row, column] and tensor_obj[row][column] to access certain position
 tensor_example = torch.tensor([[11, 12, 13], [21, 22, 23], [31, 32, 33]])
 print("What is the value on 2nd-row 3rd-column? ", tensor_example[1, 2])
 print("What is the value on 2nd-row 3rd-column? ", tensor_example[1][2])

@@ -83,8 +83,7 @@ print(squares_dict) # Output: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 squares_dict = {num: num ** 2 for num in numbers}
 print(squares_dict) # Output: {1: 1, 2: 4, 3: 9, 4: 16, 5: 25}
 
-# Dictionary comprehension with a 
-condition
+# Dictionary comprehension with a condition
 squared_even_dict = {num: num ** 2 for 
 num in range(10) if num % 2 == 0}
 print(squared_even_dict) # Output: {0: 0, 2: 4, 4: 16, 6: 36, 8: 64}

@@ -62,8 +62,7 @@ style.use('ggplot')
 titanic = sns.load_dataset("titanic")
 
 # Display first few rows
-titanic.head()
-
+print(titanic.head())
 # dropping rows based on Age column
 titanic.dropna(subset=['age'],inplace=True)
 
@@ -162,24 +161,23 @@ o "Needs Improvement" for Grade D or F
 '''
 
 #Uses if-elif-else to assign a grade:
-score = (int)(input("Enter Student score"))
+score = int(input("Enter Student score"))
 
-if (score>=90 & score<100):
+if score >= 90:
     print("Grade A")
-    grade ='A'
-elif (score>=80 & score<90):
+    grade = 'A'
+elif score >= 80:
     print("Grade B")
-    grade ='B'
-elif(score>=70 & score<80):
+    grade = 'B'
+elif score >= 70:
     print("Grade C")
-    grade ='C'
-elif(score>=60 & score<70):
+    grade = 'C'
+elif score >= 60:
     print("Grade D")
-    grade ='D'
-#else:(score<70)
+    grade = 'D'
 else:
     print("Grade F")
-    grade ='F'
+    grade = 'F'
 
 #Also implement a basic match-case (switch-case) to print:
 
@@ -233,19 +231,15 @@ students = [
  {"name": "David", "score": 65},
 ]
 
-merit = {}
-passlist = []
-i = 0
-for s in students:
-    score1 = s["score"]
-    name = s["name"]
-    if score1 > 80:
-        merit[i] = name
-        i+=1
-    if score1 >=70:
-        passlist = {"name":name, "score":score1, "merit":"Pass"}
-    else:
-        passlist = {"name":name, "score":score1, "merit":"Fail"}
+merit = {i: s["name"] for i, s in enumerate(students) if s["score"] > 80}
+passlist = [
+    {
+        "name": s["name"],
+        "score": s["score"],
+        "merit": "Pass" if s["score"] >= 70 else "Fail"
+    }
+    for s in students
+]
 
 print(passlist)
 

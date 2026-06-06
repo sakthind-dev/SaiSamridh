@@ -1,6 +1,5 @@
 # Numpy
-import numpy as np
-
+arr = np.array([1,2,3,4,5])
 #numpy is a library in python used for working with arrays. It also has functions for working in the domain of linear algebra,
 #fourier transform, and matrices.
 distance = [10,15,25,40]

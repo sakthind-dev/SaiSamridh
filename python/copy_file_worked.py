@@ -21,14 +21,11 @@ Here is how running it should look:
 """ Opens two files and copies one into the other line by line. """
 import sys
 
-infilename = sys.argv[1]
-outfilename = sys.argv[2]
-
-infile = open(infilename)
-outfile = open(outfilename,'w')
-
-for line in infile:
-    outfile.write(line)
-    
+if len(sys.argv) < 3:
+    print("Usage: python copy_file_worked.py <input_file> <output_file>")
+    sys.exit(1)
+with open(infilename) as infile, open(outfilename, 'w') as outfile:
+    for line in infile:
+        outfile.write(line)    
 infile.close()
 outfile.close()

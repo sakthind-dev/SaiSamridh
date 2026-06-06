@@ -875,11 +875,11 @@ Task 3: Write a generator function to yield Fibonacci numbers up to n terms.
 
 def generate_even_numbers1(n):
     for i in range(n):
-        if (i %2 ==0):
-        yield i
+        if i % 2 == 0:
+            yield i
 
 def generate_square_numbers1(n):
-    squ =[x*x for x in range(n) ]
+    squ = [x * x for x in range(n)]
     return squ
 
 def generate_fib_numbers1(n):
@@ -928,7 +928,7 @@ for n in generate_even_numbers(10):
 
 def generate_square_numbers(n):
     squ =[x*x for x in range(n) ]
-#generate_square_numbers(10)
+    return squ
 
 squares_gen = (x**2 for x in range(10)) # Generator expression
 for square in squares_gen:
@@ -975,8 +975,8 @@ def func_iter():
 func_iter()
 
 def func_dict():
-    dict ={'Ram':35, 'Raj':36, 'Rah': 37}
-    for k, v in dict.items():
+    mdict ={'Ram':35, 'Raj':36, 'Rah': 37}
+    for k, v in mdict.items():
         print(k,v)
 
 func_dict()
@@ -1091,7 +1091,7 @@ def chg_dir(npath):
 with chg_dir("/tmp"):
     print("Inside context:", os.getcwd())
 print("restored", os.getcwd())
-exit()
+#exit()
 
 #numpy. Numpy is a powerful library for numerical computing in Python. It provides support for arrays, matrices, and a wide range of 
 # mathematical functions. Here are some examples of using numpy: 

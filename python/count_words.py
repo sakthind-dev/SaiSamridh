@@ -1,8 +1,12 @@
 # -count_words.py *- coding: utf-8 -*-
 import sys
 
+if len(sys.argv) < 2:
+    print("Usage: python count_words.py <filename>")
+    sys.exit(1)
+
 filename = sys.argv[1]
-# print("\n",filename,"\n")  # You can check that the filename is correct
+print("\n",filename,"\n")  # You can check that the filename is correct
     
 text_file = open(filename)     # open the file for reading
 

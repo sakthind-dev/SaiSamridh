@@ -97,8 +97,7 @@ print('Plot saved as my_plot.png')
 import pandas as pd
 
 # Load the california_housing_train.csv dataset into a DataFrame
-california_df = pd.read_csv('C:\\Users\\saijo\\Downloads\\california_housing_train.csv')
-
+california_df = pd.read_csv('california_housing_train.csv')
 # Display the first 5 rows of the DataFrame
 print(california_df.head())
 
