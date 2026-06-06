@@ -22,7 +22,7 @@ def absv(n):
     if n >=0:
         n1 = n
     else: 
-        n1 =-n
+        n1 = -n
     print("absv of %d is %d", n, n1)
     
 if __name__ == "__main__":
