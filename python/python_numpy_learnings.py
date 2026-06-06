@@ -40,6 +40,13 @@ matrix_b = np.array([[5,6],[7,8]])
 matrix_c = np.dot(matrix_a, matrix_b)
 print(matrix_c, type(matrix_c))
 
+arr = np.array([1, 2, 3, 4, 5])
+print(arr * 2) # Output: [ 2 4 6 8 10]
+
+matrix = np.array([[1, 2], [3, 4]])
+print(np.linalg.inv(matrix)) # Inverse of the matrix
+print(np.mean(matrix)) # Mean of all elements
+
 # (1) Type of data by dtype
 distance_array = np.array([10,15,25,40])
 distance_array.dtype

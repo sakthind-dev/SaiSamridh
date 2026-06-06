@@ -350,6 +350,23 @@ print(subscription_details_empty)
 import pandas as pd
 pd.DataFrame(subscription_details)
 
+data = {'Name': ['John', 'Anna', 'Peter'], 'Age': [28, 24, 35]}
+df = pd.DataFrame(data)
+print(df)
+# Output:
+# Name Age
+# 0 John 28
+# 1 Anna 24
+# 2 Peter 3
+
+# Filtering data
+filtered_df = df[df['Age'] > 25]
+print(filtered_df)
+# Grouping data
+grouped = df.groupby('Age').mean()
+print(grouped)
+
+
 # [tuple1,tuple2,tuple3.....]
 cust_details = [('John',864),('Theresa',560),('Liz',890)]
 print(cust_details)
@@ -1324,6 +1341,26 @@ infile.close()
 
 #plotting with matplotlib
 import matplotlib.pyplot as plt
+
+#simple line plot
+x = [1, 2, 3, 4]
+y = [10, 20, 25, 30]
+plt.plot(x, y)
+plt.title('Simple Line Plot')
+plt.xlabel('X-axis')
+plt.ylabel('Y-axis')
+plt.show()
+
+#subplots
+# Creating subplots
+fig, axs = plt.subplots(2, 2)
+axs[0, 0].plot(x, y)
+axs[0, 1].scatter(x, y)
+axs[1, 0].bar(x, y)
+axs[1, 1].hist(y)
+plt.show()
+
+#customizing plots
 plt.plot([23,35,78,90,64], color='red', marker='o', label='PSeries')
 plt.xlabel('Population')
 plt.ylabel('Total count')
@@ -1339,8 +1376,6 @@ plt.savefig('my_plot.png')
 print('Plot saved as my_plot.png')
 
 #calfiornia population growth
-import pandas as pd
-
 # Load the california_housing_train.csv dataset into a DataFrame
 california_df = pd.read_csv('/content/sample_data/california_housing_train.csv')
 
